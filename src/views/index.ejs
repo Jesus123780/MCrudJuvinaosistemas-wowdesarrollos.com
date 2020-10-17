@@ -1,0 +1,68 @@
+<% include partials/_header %>
+<link rel="stylesheet" href="style.css">
+
+  
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/pulse/bootstrap.min.css">
+
+
+
+
+    <div class="container">
+      <h1 class="top">Crud Jesus Juvinao </h1>
+        <div class="card-body">
+          <form action="/add" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="title" placeholder="Titulo">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="description" cols="80"
+                placeholder="Escribe una tarea"
+                ></textarea>
+            </div>
+            <button class="Guardar" type="submit">
+              Guardar
+            </button>
+          </form>
+        </div>
+      
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-50">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Titulo</th>
+            <th>Tarea</th>
+            <th>Crud</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < tasks.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><strong><%= tasks[i].title %></strong></td>
+              <td><%= tasks[i].description %></td>
+              <td>
+                <a
+                  class="<%= tasks[i].status ? 'btn btn-success' : 'btn '%>"
+                  href="/turn/<%= tasks[i]._id %>">Realizado</a>
+                <a href="/delete/<%= tasks[i]._id %>"
+                  class="btn btn-danger">
+                Borrar
+                </a>
+                <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">
+                  Editar
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+
+
+
+
